@@ -1,0 +1,35 @@
+.container{
+    position: absolute;
+    top: 40%;
+    display: inline;
+}
+.container>.play{
+    border-style:solid;
+    border-width:2px;
+    border-color:red;
+    position: relative;
+    height: 150px;
+    width: 150px;
+}
+
+.container>.play:after{
+    content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.container>.player{
+    border-style:solid;
+    border-width:2px;
+    border-color:red;
+    position: relative;
+    width: 700px;
+    height: 150px;
+    float: right;
+}
+
+.container>.player:after{
+    content: "";
+  display: inline;
+  padding-bottom: 100%;
+}
