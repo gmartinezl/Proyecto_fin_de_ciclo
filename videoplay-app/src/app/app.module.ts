@@ -9,13 +9,17 @@ import { PlayerComponent } from './player/player.component';
 import { LoginComponent } from './usuarios/login/login.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
+import { CancionesComponent } from './canciones/canciones.component';
+import { RegistroComponent } from './registro/registro.component';
 
 //constante con todas las rutas de nuestra app.
 const routes: Routes = [
-  {path: '' ,redirectTo:'', pathMatch: 'full'},
+  {path: '' ,redirectTo:'/inicio', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'favoritos', component: FavoritosComponent},
   {path: 'noticias', component: NoticiasComponent},
+  {path: 'inicio', component: PlayerComponent},
+  {path: 'registro', component: RegistroComponent}
 ];
 
 
@@ -28,6 +32,8 @@ const routes: Routes = [
     LoginComponent,
     NoticiasComponent,
     FavoritosComponent,
+    CancionesComponent,
+    RegistroComponent,
 
 
   ],
