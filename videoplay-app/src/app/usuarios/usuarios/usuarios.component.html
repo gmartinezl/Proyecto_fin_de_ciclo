@@ -1,0 +1,29 @@
+<div class="card border-primary mb-3" >
+  <div class="card-header">Usuarios</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Listado de usuarios</h5>
+
+    <div class="alert alert-info" *ngIf='usuarios?.length == 0'>
+      No hay registros en la base de datos!                                  
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="usuarios?.length > 0">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Apellido</th>
+          <th>Nombre</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{usuario.id}}</td>
+          <td>{{usuario.apellido}}</td>
+          <td>{{usuario.nombre}}</td>
+          <td>{{usuario.username}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

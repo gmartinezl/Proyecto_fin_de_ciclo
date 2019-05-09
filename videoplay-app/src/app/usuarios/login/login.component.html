@@ -2,8 +2,8 @@
   <img class="mb-4" src="\assets\vpIco.ico" alt="" width="72" height="72">
   <h1 class="h3 mb-3 font-weight-normal ">Login</h1>
   <label for="username" class="sr-only">Correo Electr&oacute;nico</label>
-  <input  type="email" id="username" name="username" class="form-control" placeholder="Correo Electr&oacute;nico"
-    required autofocus>
+  <input type="email" id="username" name="username" class="form-control" placeholder="Correo Electr&oacute;nico"
+    autofocus required>
   <label for="password" class="sr-only">Contrase&ntilde;a</label>
   <input  type="password" id="password" name="password" class="form-control" placeholder="Contrase&ntilde;a" required>
   <div class="mb-3">
@@ -11,6 +11,6 @@
       <a routerLink="/registro">Registrar</a>
     </label>
   </div>
-  <button class="btn btn-lg btn-dark btn-block " aria-pressed="true" type="submit" >Login</button>
+  <button (click) = 'login()' class="btn btn-lg btn-dark btn-block " value="Login" aria-pressed="true" type="submit" >Login</button>
 
 </form>

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -11,15 +12,18 @@ import { NoticiasComponent } from './noticias/noticias.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { CancionesComponent } from './canciones/canciones.component';
 import { RegistroComponent } from './registro/registro.component';
+import { UsuariosComponent } from './usuarios/usuarios/usuarios.component';
+import { UsuarioService } from './usuarios/usuario.service';
 
 //constante con todas las rutas de nuestra app.
 const routes: Routes = [
-  {path: '' ,redirectTo:'/inicio', pathMatch: 'full'},
+  {path: '' , redirectTo: '/inicio', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'favoritos', component: FavoritosComponent},
   {path: 'noticias', component: NoticiasComponent},
   {path: 'inicio', component: PlayerComponent},
-  {path: 'registro', component: RegistroComponent}
+  {path: 'registro', component: RegistroComponent},
+  {path: 'usuarios', component: UsuariosComponent}
 ];
 
 
@@ -34,14 +38,16 @@ const routes: Routes = [
     FavoritosComponent,
     CancionesComponent,
     RegistroComponent,
+    UsuariosComponent,
 
 
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

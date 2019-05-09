@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../usuario';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -11,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   //atributos
   private usuario: Usuario;
+
   constructor() {
     this.usuario = new Usuario();
    }
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
     console.log(this.usuario);
 
     if(this.usuario.username == null || this.usuario.password == null){
-     
+      Swal.fire('Error Login', 'Nombre de usuario o contraseña vacias', 'error');
       return;
     }
 
