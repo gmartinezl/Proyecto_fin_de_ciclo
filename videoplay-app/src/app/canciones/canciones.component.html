@@ -1,3 +1,45 @@
-<p>
-  canciones works!
-</p>
+<div class="card bg-light ">
+  <div class="card-header">Canciones</div>
+  <div class="card-body ">
+    <h5 class="card-title">Listado de canciones</h5>
+
+    <div class="my-2 text-left">
+      <button class="btn btn-rounded btn-dark" type="button" [routerLink]="['/clientes/form']">Subir canci&oacute;n</button>
+  </div>
+    <div class="alert alert-info" *ngIf='canciones?.length == 0'>
+      No hay registros en la base de datos!                                  
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="canciones?.length > 0">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Titulo</th>
+          <th>Artista</th>
+          <th>Duración</th>
+          <th>
+            editar
+          </th>
+          <th>
+            eliminar
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cancion of canciones">
+          <td>{{cancion.id}}</td>
+          <td>{{cancion.titulo}}</td>
+          <td>{{cancion.artista}}</td>
+          <td>{{cancion.duracion}}</td>
+          <td>
+            <button type="button" name="editar"  class="btn btn-primary btn-sm">editar</button>
+          </td>
+          <td>
+            <button type="button" name="eliminar"  class="btn btn-danger btn-sm">eliminar</button>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

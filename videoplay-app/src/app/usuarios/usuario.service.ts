@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Usuario } from './usuario';
 import { of, Observable } from "rxjs";
 import Swal from 'sweetalert2';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable(
 )
 export class UsuarioService {
 
   private urlEndPoint: string = "http://localhost:8080/api/usuarios";
-
+  private httpHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(private http: HttpClient) { }
 
   /**
@@ -21,6 +21,10 @@ export class UsuarioService {
    */
   getUsuarios(): Observable <Usuario[]>{
     return this.http.get <Usuario[]> (this.urlEndPoint);
+  }
+
+  alta(usuario: Usuario): Observable <Usuario>{
+    return this.http.post<Usuario>(this.urlEndPoint, usuario, {headers: this.httpHeaders}) ;
   }
 
   /*
