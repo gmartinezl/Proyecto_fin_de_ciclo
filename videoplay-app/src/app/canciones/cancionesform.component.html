@@ -1,0 +1,18 @@
+
+<form class="form-signin" #cancionesForm = "ngForm" >
+  <img class="mb-4" src="\assets\vpIco.ico" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal ">Registro de canciones</h1>
+  <label for="titulo" class="sr-only">Titulo</label>
+  <input  type="text" name="titulo" class="form-control" [(ngModel)]="cancion.titulo" placeholder="Titulo" #titulo = ngModel>
+  <label for="artista" class="sr-only">Artista</label>
+  <input  type="text"  name="artista" class="form-control" [(ngModel)]="cancion.artista"  placeholder="Artista" #artista = ngModel>
+  <label for="duracion" class="sr-only">Duracion</label>
+  <input  type="number"  name="duracion" class="form-control" [(ngModel)]="cancion.duracion" placeholder="Duracion"
+    required autofocus #artista = ngModel>
+  
+  <button class="btn btn-lg btn-dark btn-block " aria-pressed="true" type="submit" (click)='subir()' *ngIf="!cancion.id else elseBlock" >Subir</button>
+
+  <ng-template #elseBlock>
+    <button class="btn btn-lg btn-dark btn-block" role="button" (click)='editar()'>Editar</button>
+  </ng-template>
+</form>

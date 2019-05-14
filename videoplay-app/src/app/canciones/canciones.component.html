@@ -4,7 +4,7 @@
     <h5 class="card-title">Listado de canciones</h5>
 
     <div class="my-2 text-left">
-      <button class="btn btn-rounded btn-dark" type="button" [routerLink]="['/clientes/form']">Subir canci&oacute;n</button>
+      <button class="btn btn-rounded btn-dark" type="button" [routerLink]="['/canciones/cancionesform']">Subir canci&oacute;n</button>
   </div>
     <div class="alert alert-info" *ngIf='canciones?.length == 0'>
       No hay registros en la base de datos!                                  
@@ -31,10 +31,10 @@
           <td>{{cancion.artista}}</td>
           <td>{{cancion.duracion}}</td>
           <td>
-            <button type="button" name="editar"  class="btn btn-primary btn-sm">editar</button>
+            <button type="button" name="editar"  [routerLink]="[ '/canciones/cancionesform', cancion.id]"class="btn btn-primary btn-sm">editar</button>
           </td>
           <td>
-            <button type="button" name="eliminar"  class="btn btn-danger btn-sm">eliminar</button>
+            <button type="button" name="eliminar" (click)="borrar(cancion)"  class="btn btn-danger btn-sm">eliminar</button>
           </td>
           
         </tr>
