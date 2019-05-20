@@ -2,10 +2,10 @@
   <img class="mb-4" src="\assets\vpIco.ico" alt="" width="72" height="72">
   <h1 class="h3 mb-3 font-weight-normal ">Login</h1>
   <label for="username" class="sr-only">Correo Electr&oacute;nico</label>
-  <input type="email" id="username" name="username" class="form-control" placeholder="Correo Electr&oacute;nico"
+  <input [(ngModel)]= "usuario.username" type="text" id="username" name="username" class="form-control" placeholder="Nombre de usuario"
     autofocus required>
   <label for="password" class="sr-only">Contrase&ntilde;a</label>
-  <input  type="password" id="password" name="password" class="form-control" placeholder="Contrase&ntilde;a" required>
+  <input [(ngModel)]= "usuario.password" type="password" id="password" name="password" class="form-control" placeholder="Contrase&ntilde;a" required>
   <div class="mb-3">
     <label>
       <a routerLink="/registro">Registrar</a>
