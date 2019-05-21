@@ -1,29 +1,45 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink=""><img src="\assets\vpIco.ico" width="30" height="30">{{title}}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link mx-5" routerLink="/noticias" routerLinkActive="active">Noticias<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/favoritos" routerLinkActive="active">Favoritos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mx-5" routerLink="/usuarios" routerLinkActive="active">Usuarios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/canciones" routerLinkActive="active">Canciones</a>
-        </li>
-      </ul>
-      <ul  class="navbar-nav navbar-right">
-        <li nav-item>
-            <a class="nav-link mx-5 " routerLink="/login" routerLinkActive="active">
-              Login <img src="/assets/user.ico" width="30" height="30" class="mx-2"></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <a class="navbar-brand" routerLink=""><img src="\assets\vpIco.ico" width="30" height="30">{{title}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link mx-5" routerLink="/noticias" routerLinkActive="active">Noticias<span
+            class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/favoritos" routerLinkActive="active">Favoritos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mx-5" routerLink="/usuarios" routerLinkActive="active">Usuarios</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/canciones" routerLinkActive="active">Canciones</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav navbar-right">
+      <li *ngIf="!authService.isAuthenticated()">
+        <!--se muestra si no esta autenticado-->
+        <a class="btn btn-dark mx-5 " routerLink="/login" routerLinkActive="active">
+          Login <img src="/assets/user.ico" width="30" height="30" class="mx-2"></a>
+      </li>
+
+      <li *ngIf="authService.isAuthenticated()" class="dropdown">
+        <!--se muestra si no esta autenticado-->
+        <a class="btn btn-secondary mx-5 dropdown-toggle" routerLinkActive="active" id="dropdownMenuLink"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{authService.usuario.username}}<img src="/assets/user.ico" width="30" height="30" class="mx-2"></a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <button (click) = "logout()" class="dropdown-item">Logout</button>
+          </div>
+      </li>
+
+
+    </ul>
+  </div>
+</nav>

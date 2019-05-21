@@ -20,6 +20,10 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
+    if(this.authService.isAuthenticated()){
+      Swal.fire('Login',`${this.authService.usuario.username} ya has iniciado sesión`,'info');
+      this.router.navigate(['/inicio']);
+    }
   }
 
   /**
@@ -44,7 +48,13 @@ export class LoginComponent implements OnInit {
       let usuario = this.authService.usuario;
       this.router.navigate(['/inicio']);
       Swal.fire('Login', `Hola ${usuario.username}, has iniciado sesión con éxito`, 'success');
-    });
+    }, err => {
+      if(err.status == 400){
+        Swal.fire('Error Login', 'Nombre de usuario o contraseña incorrectas...', 'error');
+      }
+    }
+    
+    );
 
   }
 
