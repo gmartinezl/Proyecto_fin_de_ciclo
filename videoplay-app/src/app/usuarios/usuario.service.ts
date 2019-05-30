@@ -5,14 +5,30 @@ import Swal from 'sweetalert2';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from '@angular/router';
 import { catchError, map } from 'rxjs/operators';
+import { AuthService } from './usuarios/auth.service';
+
 
 @Injectable(
 )
 export class UsuarioService {
 
   private urlEndPoint: string = "http://localhost:8080/api/usuarios";
+  private registroEndPoint: string = "http://localhost:8080/api/registro";
+
   private httpHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-  constructor(private http: HttpClient,  private router: Router) { }
+
+  constructor(private http: HttpClient,  private router: Router, private authService: AuthService) { }
+
+  private agregarAuthorizationHeader(){
+    let token = this.authService.token;
+
+    if(token != null){
+      return this.httpHeaders.append('Authorization','Bearer'+token);
+    }
+    
+    return this.httpHeaders;
+
+  }
 
   /**
    * Función que devuelve los usuarios en el sistema. Por medio de un Stream Observable que se caracteriza
@@ -22,40 +38,13 @@ export class UsuarioService {
    * SQL:
    */
   getUsuarios(): Observable <Usuario[]>{
-    return this.http.get <Usuario[]> (this.urlEndPoint);
+    return this.http.get <Usuario[]> (this.urlEndPoint, { headers: this.agregarAuthorizationHeader()});
   }
 
-  getUsuario(id):Observable<Usuario>{
-    return this.http.get<Usuario>(`${this.urlEndPoint}/${id}`).pipe(
-      catchError(e =>{
-
-        if(this.isNotAuthorized(e)){
-          return throwError(e);
-        }
-
-        this.router.navigate(['/usuarios']);
-        console.error(e.error.mensaje);
-        Swal.fire('Error al editar', e.error.mensaje, 'error');
-
-        return throwError(e);
-      }
-        )
-    )
-  } 
-  alta(usuario: Usuario): Observable <Usuario>{
-    return this.http.post(this.urlEndPoint, usuario, {headers: this.httpHeaders} )
-    .pipe(
-      map((response: any) => response.usuario as Usuario),
+  alta(usuario: Usuario): Observable <any>{
+    return this.http.post<any>(this.registroEndPoint, usuario, { headers: this.httpHeaders} ).pipe(
       catchError( e => {
-
-        if(this.isNotAuthorized(e)){
-          return throwError(e);
-        }
-
-        if(e.status == 400){
-          return throwError(e);
-        }
-
+  
         console.error(e.error.mensaje);
         Swal.fire(e.error.mensaje,e.error.error, 'error');
         return throwError(e);
@@ -63,43 +52,21 @@ export class UsuarioService {
     )
   }
 
-  update(usuario: Usuario): Observable <any>{
-    return this.http.put<any>(`${this.urlEndPoint}/${usuario.id}`,usuario, {headers: this.httpHeaders}).pipe(
-      catchError( e => {
-        
-        if(this.isNotAuthorized(e)){
-          return throwError(e);
-        }
-
-        console.error(e.error.mensaje);
-        Swal.fire(e.error.mensaje,e.error.error, 'error');
-        return throwError(e);
-      })
-    )
+  
+private isNotAuthorized(e): boolean{
+  if(e.status == 401 ) {
+    if(this.authService.isAuthenticated())
+      this.authService.logout();
+    this.router.navigate(['/login']);
+    return true;
   }
-
-delete(id: number): Observable<Usuario>{
-  return this.http.delete<Usuario>(`${this.urlEndPoint}/${id}`,{headers: this.httpHeaders}).pipe(
-    catchError( e => {
-      
-      if(this.isNotAuthorized(e)){
-        return throwError(e);
-      }
-      
-      console.error(e.error.mensaje);
-      Swal.fire(e.error.mensaje,e.error.error, 'error');
-      return throwError(e);
-    })
-  )
+  if(e.status == 403 ){
+    Swal.fire('Acceso denegado',`${this.authService.usuario.username} no tienes acceso a este recurso...`,'warning');
+    this.router.navigate(['/canciones']);
+    return true; 
+  }
+  return false;
 
 }
-  private isNotAuthorized(e): boolean{
-    if(e.status == 401 || e.status == 403 ){
-      this.router.navigate(['/login']);
-      return true;
-    }
-    return false;
-
-  }
  
 }

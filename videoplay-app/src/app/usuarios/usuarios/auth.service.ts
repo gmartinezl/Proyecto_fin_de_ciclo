@@ -37,6 +37,8 @@ export class AuthService {
 
   }
 
+ 
+
   public get usuario(): Usuario {
     if (this._usuario != null) {
       return this._usuario;
@@ -94,5 +96,13 @@ export class AuthService {
     this._usuario = null;
     this._token = null;
     sessionStorage.clear();
+  }
+
+  hasRole(role: string): boolean{
+
+    if(this.usuario.roles.includes(role)){
+      return true;
+    }
+    return false;
   }
 }

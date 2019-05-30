@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cancion } from './cancion';
 import { CancionService } from './cancion.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../usuarios/usuarios/auth.service';
 
 @Component({
   selector: 'app-canciones',
@@ -12,7 +13,7 @@ export class CancionesComponent implements OnInit {
 
    canciones: Cancion[];
 
-  constructor(private cancionService: CancionService) { }
+  constructor(private cancionService: CancionService, private authService: AuthService) { }
 
   ngOnInit() {
     this.cancionService.getCanciones().subscribe(

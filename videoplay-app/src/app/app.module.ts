@@ -18,6 +18,7 @@ import { UsuarioService } from './usuarios/usuario.service';
 import { CancionService } from './canciones/cancion.service';
 import { CancionesformComponent } from './canciones/cancionesform.component';
 
+
 // constante con todas las rutas de nuestra app.
 const routes: Routes = [
   {path: '' , redirectTo: '/inicio', pathMatch: 'full'},
@@ -28,7 +29,7 @@ const routes: Routes = [
   {path: 'registro', component: RegistroComponent},
   {path: 'usuarios', component: UsuariosComponent},
   {path: 'canciones', component: CancionesComponent},
-  {path: 'canciones/cancionesform', component: CancionesformComponent},
+  {path: 'canciones/cancionesform', component: CancionesformComponent}, 
   {path: 'canciones/cancionesform/:id', component: CancionesformComponent}
 ];
 
@@ -45,9 +46,7 @@ const routes: Routes = [
     CancionesComponent,
     RegistroComponent,
     UsuariosComponent,
-    CancionesformComponent,
-
-
+    CancionesformComponent
   ],
   imports: [
     BrowserModule,

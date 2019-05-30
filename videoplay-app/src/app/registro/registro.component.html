@@ -1,18 +1,16 @@
-<form (ngSubmit) = "alta()" class="form-signin">
+<form class="form-signin" #usuariosForm = "ngForm">
     <img class="mb-4" src="\assets\vpIco.ico" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal ">Registro de usuario</h1>
     <label for="name" class="sr-only">Nombre</label>
-    <input  type="text" name="name" class="form-control" [(ngModel)]="usuario.nombre" placeholder="Nombre">
+    <input  type="text" name="name" class="form-control" [(ngModel)]="usuario.nombre" placeholder="Nombre" #nombre = ngModel>
     <label for="surname" class="sr-only">Apellido</label>
-    <input  type="text"  name="surname" class="form-control" [(ngModel)]="usuario.apellido"  placeholder="Apellido">
+    <input  type="text"  name="surname" class="form-control" [(ngModel)]="usuario.apellido"  placeholder="Apellido" #apellido = ngModel>
     <label for="username" class="sr-only">Username</label>
     <input  type="text"  name="username" class="form-control" [(ngModel)]="usuario.username" placeholder="Nombre de usuario"
-      required autofocus>
+      required autofocus #username = ngModel>
     <label for="password" class="sr-only">Contrase&ntilde;a</label>
-    <input  type="password"  name="password" class="form-control" [(ngModel)]="usuario.password" placeholder="Contrase&ntilde;a" required>
-    <label for="checkpassword" class="sr-only">checkContrase&ntilde;a</label>
-    <input  type="password"  name="checkpassword" class="form-control" placeholder="Repite contrase&ntilde;a" required>
+    <input  type="password"  name="password" class="form-control" [(ngModel)]="usuario.password" placeholder="Contrase&ntilde;a" required   #password = ngModel>
     
-    <button class="btn btn-lg btn-dark btn-block " aria-pressed="true" type="submit" >Registrar</button>
+    <button class="btn btn-lg btn-dark btn-block " aria-pressed="true" type="submit" (click)='alta()' >Registrar</button>
   
   </form>

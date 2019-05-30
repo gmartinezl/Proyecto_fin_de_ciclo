@@ -40,14 +40,16 @@ export class CancionesformComponent implements OnInit {
         )
   }
 
-  editar(): void{
-    this.cancionService.update(this.cancion).subscribe(
+  editar(): void {
+    
+    this.cancionService.subir(this.cancion).subscribe(
+      //una vez que se crea el objeto retornamos a la pagina clientes
       json => {
-        this.router.navigate(['/canciones'])//redirecciono a clientes
-        //muestro mensaje alerta
-        Swal.fire('Cancion Actualizada',`${json.mensaje}: ${json.cancion.nombre}`, 'success');
+        this.router.navigate(['/canciones'])
+        Swal.fire('Canción editada', `${json.mensaje}: ${json.cancion.titulo}`, 'success');
       }
-    )
+
+    );
   }
 
  

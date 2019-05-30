@@ -4,7 +4,7 @@
     <h5 class="card-title">Listado de canciones</h5>
 
     <div class="my-2 text-left">
-      <button class="btn btn-rounded btn-dark" type="button" [routerLink]="['/canciones/cancionesform']">Subir canci&oacute;n</button>
+      <button *ngIf = "authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded btn-dark" type="button" [routerLink]="['/canciones/cancionesform']">Subir canci&oacute;n</button>
   </div>
     <div class="alert alert-info" *ngIf='canciones?.length == 0'>
       No hay registros en la base de datos!                                  
@@ -16,10 +16,10 @@
           <th>Titulo</th>
           <th>Artista</th>
           <th>Duración</th>
-          <th>
+          <th *ngIf = "authService.hasRole('ROLE_ADMIN')">
             editar
           </th>
-          <th>
+          <th *ngIf = "authService.hasRole('ROLE_ADMIN')">
             eliminar
           </th>
         </tr>
@@ -30,10 +30,10 @@
           <td>{{cancion.titulo}}</td>
           <td>{{cancion.artista}}</td>
           <td>{{cancion.duracion}}</td>
-          <td>
+          <td *ngIf = "authService.hasRole('ROLE_ADMIN')">
             <button type="button" name="editar"  [routerLink]="[ '/canciones/cancionesform', cancion.id]"class="btn btn-primary btn-sm">editar</button>
           </td>
-          <td>
+          <td *ngIf = "authService.hasRole('ROLE_ADMIN')">
             <button type="button" name="eliminar" (click)="borrar(cancion)"  class="btn btn-danger btn-sm">eliminar</button>
           </td>
           
