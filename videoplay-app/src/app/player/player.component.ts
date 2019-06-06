@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+//import { PlayerService } from './player.service';
+import { Cancion } from '../canciones/cancion';
 
 @Component({
     selector: 'app-player',
@@ -7,6 +9,15 @@ import { Component } from "@angular/core";
     
 })
 
-export class PlayerComponent{
-    
+export class PlayerComponent implements OnInit{
+
+    pistas: Cancion[];
+
+    constructor(/*private playerService: PlayerService*/){}
+    ngOnInit(): void {
+      /* this.playerService.getCanciones().subscribe(
+           pistas => this.pistas = pistas
+       );*/
+    }
+   
 }

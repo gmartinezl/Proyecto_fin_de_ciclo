@@ -17,14 +17,12 @@ export class CancionesComponent implements OnInit {
 
   ngOnInit() {
     this.cancionService.getCanciones().subscribe(
+      //Las expresiones lambda son funciones anónimas, es decir, funciones que no necesitan una clase.
       canciones => this.canciones = canciones
     );
   }
 
-  /**
-   * 
-   * @param cliente funcion para borrar datos de cancion
-   */
+ 
   borrar(cancion: Cancion): void{
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
