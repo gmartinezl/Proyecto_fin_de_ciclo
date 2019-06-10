@@ -17,6 +17,8 @@ import { CANCION } from './pista.json';
 export class PlayerComponent implements OnInit{
 
     pistas: Cancion[];
+    paused: boolean = true;
+    audio = new Audio();
 
     constructor(private http: HttpClient/*private playerService: PlayerService*/){}
     ngOnInit(): void {
@@ -25,17 +27,24 @@ export class PlayerComponent implements OnInit{
        );*/
         this.pistas = CANCION;
         console.log(this.pistas);
-       
-
-       
     }
-
+    
     play(): void{
-        let audio = new Audio();
-        audio.src = "../../assets/music/track01.mp3";
-        audio.load();
-        audio.play();
+        this.paused = false;
+       
+        for(let i = 0; i < this.pistas.length; i++){
+            this.audio.src =this.pistas[i].titulo;
+            this.audio.load();
+            this.audio.play();
+        }
+       
+        
     }
-  
+   
+
+    pause(): void{
+        this.paused = true;
+        this.audio.pause();
+    }
    
 }
