@@ -17,10 +17,10 @@
           <th>Artista</th>
           <th>Duración</th>
           <th *ngIf = "authService.hasRole('ROLE_ADMIN')">
-            editar
+            Editar
           </th>
           <th *ngIf = "authService.hasRole('ROLE_ADMIN')">
-            eliminar
+            Eliminar
           </th>
         </tr>
       </thead>
@@ -31,10 +31,10 @@
           <td>{{cancion.artista}}</td>
           <td>{{cancion.duracion}}</td>
           <td *ngIf = "authService.hasRole('ROLE_ADMIN')">
-            <button type="button" name="editar"  [routerLink]="[ '/canciones/cancionesform', cancion.id]"class="btn btn-primary btn-sm">editar</button>
+            <button type="button" name="editar"  [routerLink]="[ '/canciones/cancionesform', cancion.id]"class="btn btn-primary btn-sm">Editar</button>
           </td>
           <td *ngIf = "authService.hasRole('ROLE_ADMIN')">
-            <button type="button" name="eliminar" (click)="borrar(cancion)"  class="btn btn-danger btn-sm">eliminar</button>
+            <button type="button" name="eliminar" (click)="borrar(cancion)"  class="btn btn-danger btn-sm">Eliminar</button>
           </td>
           
         </tr>
